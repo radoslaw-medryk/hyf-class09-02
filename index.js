@@ -13,12 +13,13 @@ const Courses = require("./Courses.js")
 const hyf_mentors = new Mentor(mentorsJson)
 const hyf_courses = new Courses(coursesJosn);
 
-// http://localhost:3000/mentors/0
-
+// Get all mentors. If `query` parameter `startsWith` provided, get only mentors with name starting with provided letter.
+// GET http://localhost:3000/mentors?startsWith=<letter here>
 app.get("/mentors", function(req, res) {
     const allMentors = hyf_mentors.getMentorNames();
-    console.log(req.query);  // http://url.com/something?search=test
+    
     const firstLetter = req.query.startsWith;
+
     if (!firstLetter) {
         res.send(allMentors);
     } else {
@@ -27,9 +28,13 @@ app.get("/mentors", function(req, res) {
     }
 });
 
+// Get course with provided `params` parameter `name`.
+// GET http://localhost:3000/courses/<course name here>
 app.get("/courses/:name", function(req, res) {
     const name = req.params.name;
+
     const course = hyf_courses.getCourse(name);
+
     if (!course) {
         res.send("Not found")
     } else {
@@ -37,12 +42,15 @@ app.get("/courses/:name", function(req, res) {
     }
 })
 
+// Get all courses.
+// GET http://localhost:3000/courses
 app.get("/courses", function(req, res) {
     const allCourses = hyf_courses.getList();
-    //const filteredMentors = allMentors.filter(q => q.startsWith("A"))
     res.send(allCourses);
 });
 
+// Add new course to course collection.
+// POST http://localhost:3000/courses
 app.post("/courses", function(req, res) {
     console.log(req.body);
     hyf_courses.addCourse(req.body);
