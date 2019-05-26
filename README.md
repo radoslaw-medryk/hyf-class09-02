@@ -34,4 +34,4 @@ In class each of you wrote a route `GET /mentors` that returns all mentors. Now 
 Hints:
 - Use code we wrote on class as reference, but avoid copy-paste. You can learn much better by writing code by hand, than by just copy-pasting it.
 - If you are missing some functionality in your `Mentors` and `Courses` classes, you need to add it.
-- I will provide example implementation of `Mentors` and `Courses` to use if you didn't do the previous homework.
+- I provided example implementation of `Mentors` and `Courses` to use if you didn't do the previous homework. You can fin it in this repository, in folder `homework`.
